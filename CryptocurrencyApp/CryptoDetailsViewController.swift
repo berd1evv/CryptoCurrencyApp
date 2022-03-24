@@ -180,7 +180,7 @@ class CryptoDetailsViewController: UIViewController {
                 self.cryptoMarketCapRank.text = "#\(String(format: "%.0f", data.market_cap_rank))"
                 self.cryptoPrice.text = "$\(String(data.current_price))"
                 self.cryptoVolume.text = "$\(String(format: "%.0f", data.total_volume))"
-                self.cryptoChange.text = "$\(String(format: "%.2f", data.price_change_24h))"
+                self.cryptoChange.text = "$\(String(format: "%.4f", data.price_change_24h))"
                 if data.price_change_percentage_24h.isLess(than: 0) {
                     self.cryptoChangePercentage.textColor = .red
                     self.cryptoChangePercentage.text = "\(String(data.price_change_percentage_24h))%"
