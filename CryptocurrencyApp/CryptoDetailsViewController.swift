@@ -11,7 +11,6 @@ import Charts
 class CryptoDetailsViewController: UIViewController {
     
     var id = 0
-    let network = Networking()
     var arr: [Double] = []
     
     private let cryptoName : UILabel = {
@@ -172,7 +171,7 @@ class CryptoDetailsViewController: UIViewController {
     }
     
     func parse() {
-        network.cryptoDetailsNetworking(cryptoId: id) { data in
+        Networking.shared.cryptoDetailsNetworking(cryptoId: id) { data in
             DispatchQueue.main.async {
                 self.arr = data.sparkline_in_7d.price
                 self.cryptoName.text = data.name

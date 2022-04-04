@@ -11,7 +11,6 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var arr: [CryptoModel] = []
     let tableView = UITableView()
-    let network = Networking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,7 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func parse() {
-        network.cryptoNetworking() { data in
+        Networking.shared.cryptoNetworking { data in
             DispatchQueue.main.async {
                 self.arr = data
                 self.tableView.reloadData()
