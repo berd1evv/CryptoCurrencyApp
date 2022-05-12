@@ -62,7 +62,6 @@ class CryptoViewControllerCell: UITableViewCell {
         cView.rightAxis.enabled = false
         cView.chartDescription?.enabled = false
         cView.legend.enabled = false
-        cView.animate(xAxisDuration: 2.5)
         cView.translatesAutoresizingMaskIntoConstraints = false
         return cView
     }()
@@ -95,6 +94,7 @@ class CryptoViewControllerCell: UITableViewCell {
                 }
             }
         }
+        chartView.animate(xAxisDuration: 2.5)
         if change.isLess(than: 0) {
             cryptoChange.textColor = .red
             cryptoChange.text = "\(String(format: "%.2f", change))%"

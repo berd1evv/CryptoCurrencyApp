@@ -23,16 +23,24 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.frame = view.frame
         tableView.register(CryptoViewControllerCell.self, forCellReuseIdentifier: "cell")
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(didPullRefresh), for: .valueChanged)
                 
         parse()
         
         view.addSubview(tableView)
     }
     
+    @objc func didPullRefresh() {
+        parse()
+    }
+    
     func parse() {
         Networking.shared.cryptoNetworking { data in
+            self.arr.removeAll()
             DispatchQueue.main.async {
                 self.arr = data
+                self.tableView.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }
         }
